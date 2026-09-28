@@ -1,0 +1,23 @@
+# Modelagem Dimensional — Star Schema (Análise de Docentes)
+
+Este projeto apresenta a conversão de um modelo relacional universitário para um **Modelo Dimensional (Esquema em Estrela)** com foco na análise de desempenho e carga de trabalho dos **Professores**.
+
+## 📌 Diretrizes da Modelagem
+* **Objeto de Análise:** Professor (atividades acadêmicas, disciplinas lecionadas, cursos e departamentos vinculados).
+* **Escopo de Alunos:** Conforme a especificação do desafio, a dimensão de alunos foi desconsiderada do escopo de análise docente.
+* **Granularidade:** Oferta de disciplinas por professor, curso e departamento por período/data.
+
+## 🌟 Componentes do Modelo
+
+### Tabela Fato: `Fato_Atividade_Docente`
+Contém as métricas numéricas agregadas do professor e as chaves estrangeiras (Surrogate Keys - SK) para cruzamento com as dimensões:
+* `Qtd_Turmas_Ministradas` (Contagem de turmas)
+* `Carga_Horaria_Total` (Horas dedicadas no período)
+* `Qtd_Alunos_Matriculados` (Métrica agregada derivada do relacionamento original)
+
+### Tabelas Dimensão:
+1. **`Dim_Professor`:** Dados cadastrais do docente (Titulação, Regime de Trabalho).
+2. **`Dim_Departamento`:** Detalhes e campus do departamento ao qual o professor está vinculado.
+3. **`Dim_Curso`:** Cursos em que o professor leciona.
+4. **`Dim_Disciplina`:** Informações sobre as disciplinas ministradas e seus pré-requisitos.
+5. **`Dim_Data`:** Dimensão temporal criada para possibilitar análises ao longo do tempo (Ano, Semestre, Trimestre, Mês, Dia).
